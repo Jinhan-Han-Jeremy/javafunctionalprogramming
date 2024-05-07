@@ -1,9 +1,10 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
+
 import java.util.function.*;
+
+import com.model.User;
 import com.util.TriFunction;
 import com.util.Adder;
 
@@ -98,6 +99,19 @@ public class Main {
         System.out.println("Non negative number : " + filter(inputsForFilter, isPositive.or(x -> x == 0)));
         System.out.println("Positive even number : " + filter(inputsForFilter, isPositive.and(x -> x % 2 == 0)));
 
+        List<User> users = new ArrayList<>();
+        users.add(new User(3, "Alice"));
+        users.add(new User(1, "Charlie"));
+        users.add(new User(5, "Bob"));
+        users.add(new User(7, "Gob"));
+        System.out.println("users with model : \n" + users);
+
+        Comparator<User> idComparator = (u1, u2) -> u1.getId() - u2.getId();
+        Collections.sort(users, idComparator);
+        System.out.println("compared id of users with model : \n" +users);
+
+        Collections.sort(users, (u1, u2) -> u1.getName().compareTo(u2.getName()));
+        System.out.println("compared name of users  with model : \n" +users);
     }
 
 }
